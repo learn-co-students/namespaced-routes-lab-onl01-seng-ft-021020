@@ -1,4 +1,12 @@
-# This file is used by Rack-based servers to start the application.
+Rails.application.routes.draw do
 
-require ::File.expand_path('../config/environment', __FILE__)
-run Rails.application
+  resources :artists do
+    resources :songs, only: [:index, :show]
+  end
+  resources :songs
+
+  namespace :admin do 
+    resources :preferences
+  end 
+
+end
